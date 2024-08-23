@@ -17,3 +17,17 @@ export const Budgets = pgTable("budgets", {
   Icon: varchar("icon"),
   createdBy: varchar("createdBy").notNull(),
 });
+export const Income = pgTable("incomes", {
+  id: serial("id").primaryKey(),
+  name: varchar("name").notNull(),
+  amount: varchar("amount").notNull(),
+  Icon: varchar("icon"),
+  createdBy: varchar("createdBy").notNull(),
+});
+export const Expenses = pgTable("expenses", {
+  id: serial("id").primaryKey(),
+  name: varchar("name").notNull(),
+  amount: varchar("amount").notNull(),
+  budgetId: integer("budgetId").references(() => Budgets.id),
+  createdBy: varchar("createdBy").notNull(),
+});
